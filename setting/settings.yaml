@@ -18,7 +18,8 @@ player_default_hp: 100
 player_blink_duration: 3
 player_speed: 10.
 
-
+# 僵尸设置
+zombie_number: 5
 zombie_default_hp: 100
 zombie_damage  : 30
 zombie_kill_score: 100
@@ -36,6 +37,8 @@ sound_path:
 
 
 # 武器设置
+weapon_height: 30
+
 weapons:
   Pistol:
     ammo_limit: -1

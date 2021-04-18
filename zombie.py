@@ -81,6 +81,11 @@ class Zombie(Sprite):
     def update(self):
         # 更新状态
 
+        # 判断死亡
+        if self.hp <= 0:
+            self.alive = False
+            return
+
         # 始终朝向玩家
         self.turn_to((self.game.player.centerx, self.game.player.centery)) 
 
@@ -115,9 +120,7 @@ class Zombie(Sprite):
         self.centerx = float(self.rect.centerx)
         self.centery = float(self.rect.centery)
         '''
-        if self.hp <= 0:
-            self.alive = False
-
+        
 
     def turn_to(self, pos):
         self.theta = atan2(pos[1] - self.centery, pos[0] - self.centerx)

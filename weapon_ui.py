@@ -41,7 +41,7 @@ class Weapon_UI(Sprite):
 
 
     def draw(self):
-        # 在屏幕上显示得分
+        # 在屏幕上显示
         #self.update()
         self.game.screen.blit(self.weapon_image , self.weapon_rect)
         self.game.screen.blit(self.name_image   , self.name_rect)

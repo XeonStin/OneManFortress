@@ -3,7 +3,7 @@
 import pygame
 from pygame.sprite import Sprite
 from time import time
-from math import atan2
+from math import atan2, degrees
 from settings import Settings, Action
 from weapons import *
 
@@ -80,6 +80,27 @@ class Player(Sprite):
         pygame.draw.rect(self.game.screen, (255, 0, 0), \
                          (self.rect.left + hp_gauge_length - hp_length, \
                              self.rect.top - 10, hp_length, 8))
+
+
+        # 绘制武器
+        weapon_image = pygame.image.load(self.weapons[self.current_weapon_id].parameters.image_path)
+        width, height   = weapon_image.get_size()
+        ratio = self.game.settings.weapon_height / height
+        weapon_image = pygame.transform.scale(weapon_image, (int(width * ratio), int(height * ratio)))
+        
+        if cos(self.theta) > 0:
+            weapon_image    = pygame.transform.rotate(weapon_image, -degrees(self.theta))
+            weapon_rect     = weapon_image.get_rect()
+            weapon_rect.left = self.rect.centerx
+        else:
+            weapon_image    = pygame.transform.flip(weapon_image, True, False) 
+            weapon_image    = pygame.transform.rotate(weapon_image, 180-degrees(self.theta))
+            weapon_rect     = weapon_image.get_rect()
+            weapon_rect.right = self.rect.centerx
+
+        weapon_rect.centery = self.rect.centery
+
+        self.game.screen.blit(weapon_image, weapon_rect)
 
 
     def update(self):

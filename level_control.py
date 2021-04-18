@@ -11,7 +11,7 @@ class Level_Control(Sprite):
         super().__init__()
         self.game = game
         self.origial_settings = Settings()
-        self.level = 0
+        self.level = -1
         self.screen_rect = self.game.screen.get_rect()
 
         # 显示字体设置
@@ -32,13 +32,13 @@ class Level_Control(Sprite):
                 weapon.parameters.damage = int(self.origial_settings.weapons[weapon.name].damage * (1 + self.level * 0.1))
         
 
-        level_str = '等级：' + str(self.level)
-        self.level_image = self.font.render(level_str, True, self.text_color)
+            level_str = '等级：' + str(self.level)
+            self.level_image = self.font.render(level_str, True, self.text_color)
 
-        # 将等级放到屏幕的右下角
-        self.level_rect         = self.level_image.get_rect()
-        self.level_rect.right   = self.screen_rect.right
-        self.level_rect.bottom  = self.screen_rect.bottom
+            # 将等级放到屏幕的右下角
+            self.level_rect         = self.level_image.get_rect()
+            self.level_rect.right   = self.screen_rect.right
+            self.level_rect.bottom  = self.screen_rect.bottom
     
 
     def draw(self):

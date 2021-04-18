@@ -149,7 +149,7 @@ class Game:
     def update(self):
         # 更新对象
         # 补足僵尸
-        if len(self.zombies) < 5:
+        if len(self.zombies) < self.settings.zombie_number:
             new_zombie = Zombie(self, (random()*200, random()*200))
             if pygame.sprite.spritecollideany(new_zombie, self.zombies) == None:
                 self.zombies.add(new_zombie)
@@ -187,7 +187,7 @@ class Game:
             if player_zombies_collisions:
                 self.player.hit_zombie()
         
-        # 计算游戏结束
+        # 判断游戏结束
         if self.player.alive == False:
             self.stats.game_over = True
             return 
